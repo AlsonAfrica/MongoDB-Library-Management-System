@@ -82,7 +82,7 @@ Ensure you have MongoDB and MongoShell on your machine before proceeding or inst
 * To Read Document data within a Books collection we run the following command:
 
    ```bash
-      db.Books.find()
+       db.Books.find()
 
 
 
@@ -90,4 +90,81 @@ Ensure you have MongoDB and MongoShell on your machine before proceeding or inst
 * Finding a specific book by Title, run the following command:
 
       ```bash
-         db.Books.find({title: "To Kill a Mockingbird"})
+          db.Books.find({title: "To Kill a Mockingbird"})
+
+
+* Update a specific book by _id, run the following command:
+
+      ```bash
+          db.Books.updateOne({_id:3}, {$set:{available:"booked"}})
+
+
+
+* Adding a Genre to a Book (Using $addToSet) (_id: 8) Books collection we run the following command:
+
+   ```bash
+       db.Books.updateOne({_id:8},{$addToSet:{genres:'Fiction'}})
+
+
+
+* Adding a borrowed book to a patron’s record (_id: 5) we run the following command:
+
+   ```bash
+       db.Patrons.updateOne({_id:5},{$addToSet:{borrowed_books:2}})
+
+
+
+
+* Delete an Author by (_id: 3) we run the following command:
+
+   ```bash
+       db.Books.deleteOne({_id:3})
+
+
+* Finding  Books Published After 1950 (Using $gt) we run the following command:
+
+   ```bash
+        db.Books.find({published_year:{$gt:1950}})
+
+
+* Find All American Authors (Using $eq) we run the following command:
+
+   ```bash
+       db.Authors.find({nationality:{$eq:'American'}})
+
+
+* Set All Books To Available (Using $set) we run the following command:
+
+   ```bash
+       db.Books.updateMany({},{$set:{available: false}})
+
+
+* Find All Books That Are Available And Published After 1950 we run the following command:
+
+   ```bash
+       db.Books.find({available:false, published_year:{$gt:1950}})
+
+
+
+* Find authors whose names contain "George" (Using $regex) we run the following command:
+
+   ```bash
+       db.Authors.find({name:{$regex:"George"}})
+
+
+* Find authors whose names contain "George" (Using $regex) we run the following command:
+
+   ```bash
+       db.Authors.find({name:{$regex:"George"}})
+
+
+
+* Increment the published year of "1869" by 1 (Using $inc) we run the following command:
+
+   ```bash
+        db.Books.updateOne({published_year:1869},{$inc:{published_year:1}})
+
+
+# Contacts
+Email: nhlakaniphoradebe337@gmail.com
+github: AlsonAfrica
